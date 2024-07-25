@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
-import { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import { BaseModel, belongsTo, column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
+import { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Project from './project.js'
 import Client from './client.js'
 import Port from './port.js'
+import User from './user.js'
 
 export default class Request extends BaseModel {
   @column({ isPrimary: true })
@@ -24,6 +25,12 @@ export default class Request extends BaseModel {
   @belongsTo(() => Client)
   declare client: BelongsTo<typeof Client>
 
+  @belongsTo(() => User)
+  declare requestedBy: BelongsTo<typeof User>
+
+  @belongsTo(() => User)
+  declare respondedBy: BelongsTo<typeof User>
+
   @column()
   declare third_part: string
 
@@ -36,8 +43,8 @@ export default class Request extends BaseModel {
   @column()
   declare model: string
 
-  @hasMany(() => Port)
-  declare input: HasMany<typeof Port>
+  @manyToMany(() => Port)
+  declare port: ManyToMany<typeof Port>
 
   @column()
   declare desc: string
