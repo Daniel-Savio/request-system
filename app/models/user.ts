@@ -29,6 +29,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column({ serializeAs: null })
   declare password: string
 
+  //Migration done
   @hasOne(() => Group)
   declare group: HasOne<typeof Group>
 
