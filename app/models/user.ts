@@ -48,11 +48,11 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @hasMany(() => Project)
   declare projectsOwned: HasMany<typeof Project>
 
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-
   @column()
   declare level: number
+
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null

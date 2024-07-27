@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.string('email', 254).notNullable().unique()
       table.string('phone', 13).notNullable().unique()
       table.string('password').notNullable()
+      table.integer('level')
       table.integer('group_id').unsigned().references('groups.id')
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
