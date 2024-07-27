@@ -2,11 +2,12 @@ import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 import { BaseModel, belongsTo, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
+import type { HasOne, HasMany, BelongsTo } from '@adonisjs/lucid/types/relations'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
+
 import Group from './group.js'
 import Request from './request.js'
-import { HasOne, HasMany, BelongsTo } from '@adonisjs/lucid/types/relations'
 import Project from './project.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
@@ -31,6 +32,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare password: string
 
   //Table done
+  @column()
+  declare groupId: number
+
   @belongsTo(() => Group)
   declare group: BelongsTo<typeof Group>
 
