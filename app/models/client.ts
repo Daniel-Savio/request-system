@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
+import { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import Request from './request.js'
 
 export default class Client extends BaseModel {
@@ -10,8 +10,8 @@ export default class Client extends BaseModel {
   @column()
   declare name: string
 
-  @belongsTo(() => Request)
-  declare request: BelongsTo<typeof Request>
+  @hasMany(() => Request)
+  declare request: HasMany<typeof Request>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

@@ -7,6 +7,7 @@ import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import Group from './group.js'
 import Request from './request.js'
 import { HasOne, HasMany } from '@adonisjs/lucid/types/relations'
+import Project from './project.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -29,12 +30,19 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column({ serializeAs: null })
   declare password: string
 
-  //Migration done
+  //Table done
   @hasOne(() => Group)
   declare group: HasOne<typeof Group>
 
+  //Table done
   @hasMany(() => Request)
-  declare request: HasMany<typeof Request>
+  declare requestMade: HasMany<typeof Request>
+
+  @hasMany(() => Request)
+  declare requestResponded: HasMany<typeof Request>
+
+  @hasMany(() => Project)
+  declare projectsOwned: HasMany<typeof Project>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

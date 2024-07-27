@@ -3,7 +3,6 @@ import { BaseModel, belongsTo, column, hasMany, manyToMany } from '@adonisjs/luc
 import { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Project from './project.js'
 import Client from './client.js'
-import Port from './port.js'
 import User from './user.js'
 
 export default class Request extends BaseModel {
@@ -32,7 +31,7 @@ export default class Request extends BaseModel {
   declare respondedBy: BelongsTo<typeof User>
 
   @column()
-  declare third_part: string
+  declare thirdPart: string
 
   @column()
   declare status: string
@@ -43,14 +42,15 @@ export default class Request extends BaseModel {
   @column()
   declare model: string
 
-  @manyToMany(() => Port)
-  declare port: ManyToMany<typeof Port>
+  //done
+  @column()
+  declare info: JSON
 
   @column()
-  declare desc: string
+  declare desc: string //text
 
   @column.dateTime()
-  declare delivery: DateTime
+  declare supposedDeliveryDate: DateTime
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
