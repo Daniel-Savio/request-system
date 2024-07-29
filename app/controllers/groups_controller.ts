@@ -1,26 +1,22 @@
 /* eslint-disable prettier/prettier */
 import Group from '#models/group'
-import User from '#models/user'
 import type { HttpContext } from '@adonisjs/core/http'
 
-export default class UsersController {
+export default class GroupsController {
   async getAll({ }: HttpContext) { 
-    return( await User.all() )
+    return( Group.all())
   }
 
   async getOne({ }: HttpContext) { }
 
   async create({ response, request }: HttpContext) {
-    const newUser = await request.only(['name', 'phone', 'email', 'password', 'group'])
-    const userGroup = await Group.find(newUser.group)
-    console.log(userGroup)
+    const newGroup = await request.only(['name'])
     try {
-      const user = await User.create(newUser)
-      await user.related('group').associate(userGroup!)
-      return (user.name, user.email, user.phone)
+      const group = await Group.create(newGroup)
+      return group.name
     } catch (err) {
       if (err.code === 'ER_DUP_ENTRY') {
-        response.status(400).send({ message: 'The user already exist' })
+        response.status(400).send({ message: 'This group already exist' })
       } else {
         response.status(500).send({ message: err.message })
       }

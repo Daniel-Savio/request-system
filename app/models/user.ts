@@ -39,8 +39,15 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare group: BelongsTo<typeof Group>
 
   //Table done
+
+  @column()
+  declare userId: number
+
   @hasMany(() => Request)
   declare requestMade: HasMany<typeof Request>
+
+  @column()
+  declare respondedById: number
 
   @hasMany(() => Request)
   declare requestResponded: HasMany<typeof Request>

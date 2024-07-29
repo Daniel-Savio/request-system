@@ -18,11 +18,20 @@ export default class Request extends BaseModel {
   @column()
   declare ticket_number: string
 
+  @column()
+  declare projectId: number
+
   @belongsTo(() => Project)
   declare project: BelongsTo<typeof Project>
 
+  @column()
+  declare clientId: number
+
   @belongsTo(() => Client)
   declare client: BelongsTo<typeof Client>
+
+  @column()
+  declare userId: number
 
   @belongsTo(() => User)
   declare requestedBy: BelongsTo<typeof User>

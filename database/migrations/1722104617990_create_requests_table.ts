@@ -22,10 +22,10 @@ export default class extends BaseSchema {
         'SDG RJ45',
         'SDG RJ45 FO',
       ])
-      table.integer('requested_by').unsigned().references('users.id') // delete post when user is deleted
-      table.integer('responded_by').unsigned().references('users.id') // delete post when user is deleted
-      table.integer('client').unsigned().references('clients.id') // delete post when user is deleted
-      table.integer('project').unsigned().references('projects.id') // delete post when user is deleted
+      table.integer('requested_by').unsigned().references('users.id')
+      table.integer('responded_by').unsigned().references('users.id')
+      table.integer('client').unsigned().references('clients.id')
+      table.integer('project').unsigned().references('projects.id')
 
       table.timestamp('supposed_delivery_date')
       table.timestamp('created_at')
