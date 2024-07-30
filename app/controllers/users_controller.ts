@@ -4,15 +4,15 @@ import User from '#models/user'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class UsersController {
-  async getAll({ }: HttpContext) { 
-    return( await User.all() )
+  async getAll({ }: HttpContext) {
+    return (await User.all())
   }
 
   async getOne({ }: HttpContext) { }
 
   async create({ response, request }: HttpContext) {
     const newUser = await request.only(['name', 'phone', 'email', 'password', 'group'])
-    const userGroup = await Group.find(newUser.group)
+    const userGroup = await Group.findBy("name", newUser.group)
     console.log(userGroup)
     try {
       const user = await User.create(newUser)

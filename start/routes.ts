@@ -1,5 +1,7 @@
 const UsersController = () => import('#controllers/users_controller')
 const GroupsController = () => import('#controllers/groups_controller')
+const ClientsController = () => import('#controllers/clients_controller')
+const ProjectsController = () => import('#controllers/projects_controller')
 
 import router from '@adonisjs/core/services/router'
 
@@ -12,9 +14,9 @@ router.get('groups/', [GroupsController, 'getAll'])
 router.post('groups/add', [GroupsController, 'create'])
 
 //Project Routes
-router.get('projetcs/', [GroupsController, 'getAll'])
-router.post('projects/add', [GroupsController, 'create'])
+router.get('projects/', [ProjectsController, 'getAll'])
+router.post('projects/add', [ProjectsController, 'create'])
 
 //Client Routes
-router.get('clients/', [GroupsController, 'getAll'])
-router.post('clients/add', [GroupsController, 'create'])
+router.get('clients/', [ClientsController, 'getAll'])
+router.post('clients/add', [ClientsController, 'create'])

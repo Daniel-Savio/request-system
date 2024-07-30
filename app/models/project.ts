@@ -9,13 +9,16 @@ export default class Project extends BaseModel {
   declare id: number
 
   @column()
-  declare projectName: string
+  declare name: string
 
   @hasMany(() => Request)
   declare request: HasMany<typeof Request>
 
+  @column()
+  declare userId: number
+
   @belongsTo(() => User)
-  declare projectOwner: BelongsTo<typeof User>
+  declare owner: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
