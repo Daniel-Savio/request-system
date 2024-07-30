@@ -15,7 +15,7 @@ export default class ClientsController {
       if (err.code === 'ER_DUP_ENTRY') {
         response.status(400).send({ message: 'This client already exist' })
       } else {
-        response.status(500).send({ message: err.message })
+        response.status(500).send({ message: err })
       }
     }
   }

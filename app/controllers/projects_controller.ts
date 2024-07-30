@@ -10,19 +10,24 @@ export default class ProjectsController {
 
   async create({ request, response }: HttpContext) {
     const newProject = await request.only(['name', 'owner'])
-    const owner = await User.findBy('name', newProject.owner)
+   
 
     try {
-      if (await Project.findByOrFail("name", newProject.name)) {
-        response.status(400).send({ message: "Project already exists" })
-      }
+      const owner = await User.find(newProject.owner)
       const project = await Project.create(newProject)
       await project.related('owner').associate(owner!)
-      return (project.name)
-    } catch (err) {
+      
+      return (response.status(200).send({message: project}))
+    } 
+    catch (err) {
       if (err.code === 'ER_DUP_ENTRY') {
         response.status(400).send({ message: 'This project already exist' })
-      } else {
+      } 
+      if(err.message === "Row not found"){
+        response.status(500).send({ message: "User not found" })
+
+      }
+      else {
         response.status(500).send({ message: err.message })
       }
     }

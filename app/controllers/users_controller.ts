@@ -17,10 +17,10 @@ export default class UsersController {
     try {
       const user = await User.create(newUser)
       await user.related('group').associate(userGroup!)
-      return (user.name, user.email, user.phone)
+      return (user)
     } catch (err) {
       if (err.code === 'ER_DUP_ENTRY') {
-        response.status(400).send({ message: 'The user already exist' })
+        response.status(400).send({ message: `Duplicated data: \n ${err.sqlMessage}` })
       } else {
         response.status(500).send({ message: err.message })
       }
