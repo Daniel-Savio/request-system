@@ -13,10 +13,10 @@ export default class Request extends BaseModel {
   declare location: string
 
   @column()
-  declare service_number: string
+  declare serviceNumber: string
 
   @column()
-  declare ticket_number: string
+  declare ticketNumber: string
 
   @column()
   declare projectId: number

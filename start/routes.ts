@@ -3,6 +3,7 @@ const GroupsController = () => import('#controllers/groups_controller')
 const ClientsController = () => import('#controllers/clients_controller')
 const ProjectsController = () => import('#controllers/projects_controller')
 const AuthController = () => import('#controllers/auth_controller')
+const RequestsController = () => import('#controllers/requests_controller')
 
 import router from '@adonisjs/core/services/router'
 
@@ -25,3 +26,7 @@ router.post('projects/add', [ProjectsController, 'create'])
 //Client Routes
 router.get('clients/', [ClientsController, 'getAll'])
 router.post('clients/add', [ClientsController, 'create'])
+
+//Request Routes
+router.get('requests/', [RequestsController, 'getAll'])
+router.post('requests/add', [RequestsController, 'create'])
