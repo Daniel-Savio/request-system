@@ -8,14 +8,14 @@ export default class ProjectsController {
     return await Project.all()
   }
 
-  async create({ request, response }: HttpContext) {
-    const newProject = await request.only(['name', 'owner'])
+  async create({ request, response, auth }: HttpContext) {
+    const owner = await auth.authenticate()
+    const newProject = await request.only(['name'])
    
 
     try {
-      const owner = await User.find(newProject.owner)
       const project = await Project.create(newProject)
-      await project.related('owner').associate(owner!)
+      await project.related('owner').associate(owner)
       
       return (response.status(200).send({message: project}))
     } 

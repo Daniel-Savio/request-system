@@ -9,8 +9,12 @@ export default class GroupsController {
 
   async getOne({ }: HttpContext) { }
 
-  async create({ response, request }: HttpContext) {
+  async create({ response, request, auth }: HttpContext) {
+    const user = await auth.authenticate()
     const newGroup = await request.only(['name'])
+    if(user.level !== 1){
+      return response.status(403).send({message: "User does not have permission to this action"})
+    }
     try {
       const group = await Group.create(newGroup)
       return group.name

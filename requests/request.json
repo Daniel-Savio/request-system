@@ -1,0 +1,49 @@
+{
+  "location": "SE-Tucurui",
+  "serviceNuber": "123456789",
+  "ticketNuber": "6945",
+  "thirdPart": "WEG",
+  "client": 2,
+  "project": 1,
+  "status": "Em análise",
+  "desc": "Favor considerar o padrão Eletronorte",
+  "mdoel": "SDG FOFO",
+  "info": {
+    "input": [
+      {
+        "port": { "type": "Serial", "borne": "71-72", "Baudrate": "9600" },
+        "protocol": "Modbus",
+        "IEDs": [
+          { "name": "BM", "address": 2, "asset": "TR1" },
+          { "name": "TM", "address": 3, "asset": "TR1" }
+        ]
+      },
+      {
+        "port": { "type": "Serial", "borne": "74-75" },
+        "protocol": "Modbus",
+        "IEDs": [
+          { "name": "BM", "address": 2, "asset": "TR2" },
+          { "name": "TM", "address": 3, "asset": "TR2" }
+        ]
+      }
+    ],
+    "output": [
+      {
+        "port": { "type": "TCP/IP", "port": "502" },
+        "protocol": "DNP3",
+        "IEDs": [
+          { "name": "BM", "address": 2, "asset": "TR1" },
+          { "name": "TM", "address": 3, "asset": "TR1" }
+        ]
+      },
+      {
+        "port": { "type": "Serial", "borne": "74-75", "Baudrate": "9600" },
+        "protocol": "Modbus",
+        "IEDs": [
+          { "name": "BM", "address": 2, "asset": "TR2" },
+          { "name": "TM", "address": 3, "asset": "TR2" }
+        ]
+      }
+    ]
+  }
+}

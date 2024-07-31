@@ -6,7 +6,8 @@ export default class ClientsController {
     return Client.all()
   }
 
-  async create({ request, response }: HttpContext) {
+  async create({ request, response, auth }: HttpContext) {
+    await auth.authenticate()
     const newClient = await request.only(['name'])
     try {
       const client = await Client.create(newClient)

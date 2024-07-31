@@ -11,9 +11,10 @@ export default class UsersController {
   async getOne({ }: HttpContext) { }
 
   async create({ response, request }: HttpContext) {
-    const newUser = await request.only(['name', 'phone', 'email', 'password', 'group'])
+    const newUser = await request.only(['name', 'phone', 'email', 'password', 'group', 'level'])
     const userGroup = await Group.findBy("name", newUser.group)
-    console.log(userGroup)
+    
+
     try {
       const user = await User.create(newUser)
       await user.related('group').associate(userGroup!)
