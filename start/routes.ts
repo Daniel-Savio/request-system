@@ -30,3 +30,4 @@ router.post('clients/add', [ClientsController, 'create'])
 //Request Routes
 router.get('requests/', [RequestsController, 'getAll'])
 router.post('requests/add', [RequestsController, 'create'])
+router.delete('requests/delete', [RequestsController, 'deleteById'])
