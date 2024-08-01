@@ -15,10 +15,10 @@ export default class Project extends BaseModel {
   declare request: HasMany<typeof Request>
 
   @column()
-  declare userId: number
+  declare owner: number
 
-  @belongsTo(() => User)
-  declare owner: BelongsTo<typeof User>
+  @belongsTo(() => User, { foreignKey: 'owner' })
+  declare ownerObject: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

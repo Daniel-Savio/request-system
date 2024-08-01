@@ -22,25 +22,27 @@ export default class RequestsController {
     try {
       const sdRequest = await SDrequest.create(newRequest)
       console.log(sdRequest)
-      await sdRequest.related('requestedBy').associate(user)
+      await sdRequest.related('requested').associate(user)
 
       //Check if a Client ID was sent and associeate it with the request
       if (newRequest.client) {
         const client = await Client.find(newRequest.client)
-        await sdRequest.related('client').associate(client!)
+        await sdRequest.related('clientObject').associate(client!)
       }
 
       //Check if a Project ID was sent and associeate it with the request
       if (newRequest.project) {
         const project = await Project.find(newRequest.client)
-        await sdRequest.related('project').associate(project!)
+        await sdRequest.related('projectObject').associate(project!)
       }
 
-      return response.status(200).send({ message: sdRequest })
+      return response.status(200).send({ message: sdRequest.location })
     } catch (err) {
       return err.message
     }
   }
 
-  async getAll({}: HttpContext) {}
+  async getAll({}: HttpContext) {
+    return await SDrequest.all()
+  }
 }

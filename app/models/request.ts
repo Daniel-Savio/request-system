@@ -19,25 +19,28 @@ export default class Request extends BaseModel {
   declare ticketNumber: string
 
   @column()
-  declare projectId: number
+  declare project: number
 
-  @belongsTo(() => Project)
-  declare project: BelongsTo<typeof Project>
-
-  @column()
-  declare clientId: number
-
-  @belongsTo(() => Client)
-  declare client: BelongsTo<typeof Client>
+  @belongsTo(() => Project, { foreignKey: 'project' })
+  declare projectObject: BelongsTo<typeof Project>
 
   @column()
-  declare userId: number
+  declare client: number
 
-  @belongsTo(() => User)
-  declare requestedBy: BelongsTo<typeof User>
+  @belongsTo(() => Client, { foreignKey: 'client' })
+  declare clientObject: BelongsTo<typeof Client>
 
-  @belongsTo(() => User)
-  declare respondedBy: BelongsTo<typeof User>
+  @column()
+  declare requestedBy: number
+
+  @belongsTo(() => User, { foreignKey: 'requestedBy' })
+  declare requested: BelongsTo<typeof User>
+
+  @column()
+  declare respondedBy: number
+
+  @belongsTo(() => User, { foreignKey: 'respondedBy' })
+  declare responded: BelongsTo<typeof User>
 
   @column()
   declare thirdPart: string

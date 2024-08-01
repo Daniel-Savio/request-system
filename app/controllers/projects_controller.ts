@@ -9,15 +9,19 @@ export default class ProjectsController {
   }
 
   async create({ request, response, auth }: HttpContext) {
-    const owner = await auth.authenticate()
-    const newProject = await request.only(['name'])
+    await auth.authenticate()
+    const {name, ownerId} = await request.only(['name', 'ownerId'])
    
 
     try {
-      const project = await Project.create(newProject)
-      await project.related('owner').associate(owner)
+      const project = await Project.create({name})
+      if(ownerId){
+        const owner = await User.findOrFail(ownerId)
+        await project.related('ownerObject').associate(owner)
+      }
       
       return (response.status(200).send({message: project}))
+
     } 
     catch (err) {
       if (err.code === 'ER_DUP_ENTRY') {
