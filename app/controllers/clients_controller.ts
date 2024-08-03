@@ -20,4 +20,23 @@ export default class ClientsController {
       }
     }
   }
+
+  async deleteById({ response, request, auth }: HttpContext) {
+    await auth.authenticate()
+    const id = request.only(['id']).id
+    try {
+      const client = await Client.findOrFail(id)
+      const message = `${client.name}  was deleted`
+      await client.delete()
+      response.status(200).send({ message: message })
+    } catch (err) {
+      switch (err.message) {
+        case 'Row not found':
+          return response.status(400).send({ message: 'Client not found' })
+
+        default:
+          break
+      }
+    }
+  }
 }

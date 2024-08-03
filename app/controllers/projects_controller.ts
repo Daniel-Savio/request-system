@@ -36,4 +36,27 @@ export default class ProjectsController {
       }
     }
   }
+
+  async deleteById({ response, request, auth }: HttpContext) {
+    await auth.authenticate()
+
+    const id = request.only(['id']).id
+    try {
+      const projectToBeDeleted = await Project.findOrFail(id)
+      const owner = await User.findOrFail(projectToBeDeleted.owner)
+
+
+      const message = `${owner.name} ${projectToBeDeleted.name} was deleted`
+      await projectToBeDeleted.delete()
+      response.status(200).send({ message: message })
+    } catch (err) {
+      switch (err.message) {
+        case 'Row not found':
+          return response.status(400).send({ message: 'Porject not found' })
+
+        default:
+          break
+      }
+    }
+  }
 }

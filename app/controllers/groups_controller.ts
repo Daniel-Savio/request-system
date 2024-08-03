@@ -27,7 +27,23 @@ export default class GroupsController {
     }
   }
 
-  async delete({ }: HttpContext) { }
+  async deleteById({ response, request, auth }: HttpContext) {
+    await auth.authenticate()
+    const id = request.only(['id']).id
+    try {
+      const groupToBeDeleted = await Group.findOrFail(id)
+      const message = `${groupToBeDeleted.name} was deleted`
+      await groupToBeDeleted.delete()
+      response.status(200).send({ message: message })
+    } catch (err) {
+      switch (err.message) {
+        case 'Row not found':
+          return response.status(400).send({ message: 'Request not found' })
 
+        default:
+          break
+      }
+    }
+  }
   async update({ }: HttpContext) { }
 }

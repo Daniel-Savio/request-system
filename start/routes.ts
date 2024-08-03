@@ -18,14 +18,17 @@ router.post('users/add', [UsersController, 'create'])
 //Groups Routes
 router.get('groups/', [GroupsController, 'getAll'])
 router.post('groups/add', [GroupsController, 'create'])
+router.delete('groups/delete', [GroupsController, 'deleteById'])
 
 //Project Routes
 router.get('projects/', [ProjectsController, 'getAll'])
 router.post('projects/add', [ProjectsController, 'create'])
+router.delete('projects/delete', [ProjectsController, 'deleteById'])
 
 //Client Routes
 router.get('clients/', [ClientsController, 'getAll'])
 router.post('clients/add', [ClientsController, 'create'])
+router.delete('clients/add', [ClientsController, 'deleteById'])
 
 //Request Routes
 router.get('requests/', [RequestsController, 'getAll'])
