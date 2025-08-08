@@ -1,21 +1,91 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "./src/prisma"
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+enum SmartDevice {
+  SDp
+  SDG
+  SDV
+  SDM
+}
+
+enum Status {
+  Ongoing
+  Done
+  NotStarted
+}
+
+enum ConnectionType {
+  Input
+  Output
+}
+
+enum Protocol {
+  Modbus
+  DNP3
+  IEC61850
+  AMQP
+}
+
+enum Transmittion {
+  Serial
+  TCP
+}
+
 model Request {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  content   String
-  createdAt DateTime @default(now())
+  id            String        @id @default(cuid())
+  sigma         Boolean       @default(false)
+  project       String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  assignee      User?         @relation(fields: [assigneeId], references: [id])
+  assigneeId    String
+  author        User          @relation(name: "AuthorRequests", fields: [authorId], references: [id])
+  authorId      String
+  status        Status        @default(NotStarted)
+  device        SmartDevice   @default(SDG)
+  comment       String?
+  client        String?
+  thirdPart     String?       @map("third_part")
+  input         Connections[] @relation(name: "Input")
+  docs          String[]
+  back          String?
+  invoiceTT     String?       @map("invoice_tt")
+  invoiceClient String?       @map("invoice_client")
+}
+
+model User {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  name             String
+  password         String
+  setor            String
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  request_assignee Request[]
+  request_author   Request[] @relation(name: "AuthorRequests")
+}
+
+model IEDs {
+  id           String  @id @default(cuid())
+  name         String?
+  manufacturer String  @default("Treetech")
+  homologado   Boolean @default(true)
+}
+
+model Connections {
+  id            String         @id @default(cuid())
+  type          ConnectionType
+  protocol      Protocol
+  transmittion  String
+  details       Json
+  requestId     String
+  request_input Request        @relation(name: "Input", fields: [requestId], references: [id])
+  ied           Json[]
 }

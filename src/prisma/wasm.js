@@ -113,10 +113,57 @@ Prisma.NullTypes = {
  * Enums
  */
 
+exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
+  Serializable: 'Serializable'
+});
+
 exports.Prisma.RequestScalarFieldEnum = {
   id: 'id',
-  content: 'content',
-  createdAt: 'createdAt'
+  sigma: 'sigma',
+  project: 'project',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  assigneeId: 'assigneeId',
+  authorId: 'authorId',
+  status: 'status',
+  device: 'device',
+  comment: 'comment',
+  client: 'client',
+  thirdPart: 'thirdPart',
+  docs: 'docs',
+  back: 'back',
+  invoiceTT: 'invoiceTT',
+  invoiceClient: 'invoiceClient'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  name: 'name',
+  password: 'password',
+  setor: 'setor',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.IEDsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  manufacturer: 'manufacturer',
+  homologado: 'homologado'
+};
+
+exports.Prisma.ConnectionsScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  protocol: 'protocol',
+  transmittion: 'transmittion',
+  details: 'details',
+  requestId: 'requestId',
+  ied: 'ied'
 };
 
 exports.Prisma.SortOrder = {
@@ -124,14 +171,55 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+exports.Status = exports.$Enums.Status = {
+  Ongoing: 'Ongoing',
+  Done: 'Done',
+  NotStarted: 'NotStarted'
+};
+
+exports.SmartDevice = exports.$Enums.SmartDevice = {
+  SDp: 'SDp',
+  SDG: 'SDG',
+  SDV: 'SDV',
+  SDM: 'SDM'
+};
+
+exports.ConnectionType = exports.$Enums.ConnectionType = {
+  Input: 'Input',
+  Output: 'Output'
+};
+
+exports.Protocol = exports.$Enums.Protocol = {
+  Modbus: 'Modbus',
+  DNP3: 'DNP3',
+  IEC61850: 'IEC61850',
+  AMQP: 'AMQP'
+};
 
 exports.Prisma.ModelName = {
-  Request: 'Request'
+  Request: 'Request',
+  User: 'User',
+  IEDs: 'IEDs',
+  Connections: 'Connections'
 };
 
 /**

@@ -1,14 +1,15 @@
 services:
-  mongo:
-    image: mongo
-    container_name: mongodb
+  postgres:
+    image: postgres
+    container_name: postgres
     ports:
-      - 27017:27017
+      - 5432:5432
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=request-system
     volumes:
-      - mongo-data:/data/db
+      - postgres-data:/var/lib/postgresql/data
 
 volumes:
-  mongo-data:
+  postgres-data:
