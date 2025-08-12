@@ -3,4 +3,5 @@ export interface IED {
   name?: string;
   manufacturer: string;
   homologado: boolean;
+  protocols: string[];
 }

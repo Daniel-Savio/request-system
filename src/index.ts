@@ -1,9 +1,12 @@
 import Fastify from 'fastify';
+import cors from '@fastify/cors';
 import { setupRoutes } from './routes.ts';
 
 const fastify = Fastify({
   logger: true,
 });
+
+fastify.register(cors);
 
 setupRoutes(fastify);
 

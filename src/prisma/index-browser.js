@@ -153,7 +153,8 @@ exports.Prisma.IEDsScalarFieldEnum = {
   id: 'id',
   name: 'name',
   manufacturer: 'manufacturer',
-  homologado: 'homologado'
+  homologado: 'homologado',
+  protocols: 'protocols'
 };
 
 exports.Prisma.ConnectionsScalarFieldEnum = {
@@ -203,16 +204,16 @@ exports.SmartDevice = exports.$Enums.SmartDevice = {
   SDM: 'SDM'
 };
 
-exports.ConnectionType = exports.$Enums.ConnectionType = {
-  Input: 'Input',
-  Output: 'Output'
-};
-
 exports.Protocol = exports.$Enums.Protocol = {
   Modbus: 'Modbus',
   DNP3: 'DNP3',
   IEC61850: 'IEC61850',
   AMQP: 'AMQP'
+};
+
+exports.ConnectionType = exports.$Enums.ConnectionType = {
+  Input: 'Input',
+  Output: 'Output'
 };
 
 exports.Prisma.ModelName = {

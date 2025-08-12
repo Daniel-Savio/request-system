@@ -3702,6 +3702,7 @@ export namespace Prisma {
     name: number
     manufacturer: number
     homologado: number
+    protocols: number
     _all: number
   }
 
@@ -3725,6 +3726,7 @@ export namespace Prisma {
     name?: true
     manufacturer?: true
     homologado?: true
+    protocols?: true
     _all?: true
   }
 
@@ -3805,6 +3807,7 @@ export namespace Prisma {
     name: string | null
     manufacturer: string
     homologado: boolean
+    protocols: $Enums.Protocol[]
     _count: IEDsCountAggregateOutputType | null
     _min: IEDsMinAggregateOutputType | null
     _max: IEDsMaxAggregateOutputType | null
@@ -3829,6 +3832,7 @@ export namespace Prisma {
     name?: boolean
     manufacturer?: boolean
     homologado?: boolean
+    protocols?: boolean
   }, ExtArgs["result"]["iEDs"]>
 
   export type IEDsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3836,6 +3840,7 @@ export namespace Prisma {
     name?: boolean
     manufacturer?: boolean
     homologado?: boolean
+    protocols?: boolean
   }, ExtArgs["result"]["iEDs"]>
 
   export type IEDsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3843,6 +3848,7 @@ export namespace Prisma {
     name?: boolean
     manufacturer?: boolean
     homologado?: boolean
+    protocols?: boolean
   }, ExtArgs["result"]["iEDs"]>
 
   export type IEDsSelectScalar = {
@@ -3850,9 +3856,10 @@ export namespace Prisma {
     name?: boolean
     manufacturer?: boolean
     homologado?: boolean
+    protocols?: boolean
   }
 
-  export type IEDsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "manufacturer" | "homologado", ExtArgs["result"]["iEDs"]>
+  export type IEDsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "manufacturer" | "homologado" | "protocols", ExtArgs["result"]["iEDs"]>
 
   export type $IEDsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "IEDs"
@@ -3862,6 +3869,7 @@ export namespace Prisma {
       name: string | null
       manufacturer: string
       homologado: boolean
+      protocols: $Enums.Protocol[]
     }, ExtArgs["result"]["iEDs"]>
     composites: {}
   }
@@ -4289,6 +4297,7 @@ export namespace Prisma {
     readonly name: FieldRef<"IEDs", 'String'>
     readonly manufacturer: FieldRef<"IEDs", 'String'>
     readonly homologado: FieldRef<"IEDs", 'Boolean'>
+    readonly protocols: FieldRef<"IEDs", 'Protocol[]'>
   }
     
 
@@ -5784,7 +5793,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     manufacturer: 'manufacturer',
-    homologado: 'homologado'
+    homologado: 'homologado',
+    protocols: 'protocols'
   };
 
   export type IEDsScalarFieldEnum = (typeof IEDsScalarFieldEnum)[keyof typeof IEDsScalarFieldEnum]
@@ -5912,16 +5922,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'ConnectionType'
+   * Reference to a field of type 'Protocol[]'
    */
-  export type EnumConnectionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConnectionType'>
-    
-
-
-  /**
-   * Reference to a field of type 'ConnectionType[]'
-   */
-  export type ListEnumConnectionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConnectionType[]'>
+  export type ListEnumProtocolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Protocol[]'>
     
 
 
@@ -5933,9 +5936,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Protocol[]'
+   * Reference to a field of type 'ConnectionType'
    */
-  export type ListEnumProtocolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Protocol[]'>
+  export type EnumConnectionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConnectionType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ConnectionType[]'
+   */
+  export type ListEnumConnectionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConnectionType[]'>
     
 
 
@@ -6169,6 +6179,7 @@ export namespace Prisma {
     name?: StringNullableFilter<"IEDs"> | string | null
     manufacturer?: StringFilter<"IEDs"> | string
     homologado?: BoolFilter<"IEDs"> | boolean
+    protocols?: EnumProtocolNullableListFilter<"IEDs">
   }
 
   export type IEDsOrderByWithRelationInput = {
@@ -6176,6 +6187,7 @@ export namespace Prisma {
     name?: SortOrderInput | SortOrder
     manufacturer?: SortOrder
     homologado?: SortOrder
+    protocols?: SortOrder
   }
 
   export type IEDsWhereUniqueInput = Prisma.AtLeast<{
@@ -6186,6 +6198,7 @@ export namespace Prisma {
     name?: StringNullableFilter<"IEDs"> | string | null
     manufacturer?: StringFilter<"IEDs"> | string
     homologado?: BoolFilter<"IEDs"> | boolean
+    protocols?: EnumProtocolNullableListFilter<"IEDs">
   }, "id">
 
   export type IEDsOrderByWithAggregationInput = {
@@ -6193,6 +6206,7 @@ export namespace Prisma {
     name?: SortOrderInput | SortOrder
     manufacturer?: SortOrder
     homologado?: SortOrder
+    protocols?: SortOrder
     _count?: IEDsCountOrderByAggregateInput
     _max?: IEDsMaxOrderByAggregateInput
     _min?: IEDsMinOrderByAggregateInput
@@ -6206,6 +6220,7 @@ export namespace Prisma {
     name?: StringNullableWithAggregatesFilter<"IEDs"> | string | null
     manufacturer?: StringWithAggregatesFilter<"IEDs"> | string
     homologado?: BoolWithAggregatesFilter<"IEDs"> | boolean
+    protocols?: EnumProtocolNullableListFilter<"IEDs">
   }
 
   export type ConnectionsWhereInput = {
@@ -6491,6 +6506,7 @@ export namespace Prisma {
     name?: string | null
     manufacturer?: string
     homologado?: boolean
+    protocols?: IEDsCreateprotocolsInput | $Enums.Protocol[]
   }
 
   export type IEDsUncheckedCreateInput = {
@@ -6498,6 +6514,7 @@ export namespace Prisma {
     name?: string | null
     manufacturer?: string
     homologado?: boolean
+    protocols?: IEDsCreateprotocolsInput | $Enums.Protocol[]
   }
 
   export type IEDsUpdateInput = {
@@ -6505,6 +6522,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: StringFieldUpdateOperationsInput | string
     homologado?: BoolFieldUpdateOperationsInput | boolean
+    protocols?: IEDsUpdateprotocolsInput | $Enums.Protocol[]
   }
 
   export type IEDsUncheckedUpdateInput = {
@@ -6512,6 +6530,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: StringFieldUpdateOperationsInput | string
     homologado?: BoolFieldUpdateOperationsInput | boolean
+    protocols?: IEDsUpdateprotocolsInput | $Enums.Protocol[]
   }
 
   export type IEDsCreateManyInput = {
@@ -6519,6 +6538,7 @@ export namespace Prisma {
     name?: string | null
     manufacturer?: string
     homologado?: boolean
+    protocols?: IEDsCreateprotocolsInput | $Enums.Protocol[]
   }
 
   export type IEDsUpdateManyMutationInput = {
@@ -6526,6 +6546,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: StringFieldUpdateOperationsInput | string
     homologado?: BoolFieldUpdateOperationsInput | boolean
+    protocols?: IEDsUpdateprotocolsInput | $Enums.Protocol[]
   }
 
   export type IEDsUncheckedUpdateManyInput = {
@@ -6533,6 +6554,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     manufacturer?: StringFieldUpdateOperationsInput | string
     homologado?: BoolFieldUpdateOperationsInput | boolean
+    protocols?: IEDsUpdateprotocolsInput | $Enums.Protocol[]
   }
 
   export type ConnectionsCreateInput = {
@@ -6870,11 +6892,20 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumProtocolNullableListFilter<$PrismaModel = never> = {
+    equals?: $Enums.Protocol[] | ListEnumProtocolFieldRefInput<$PrismaModel> | null
+    has?: $Enums.Protocol | EnumProtocolFieldRefInput<$PrismaModel> | null
+    hasEvery?: $Enums.Protocol[] | ListEnumProtocolFieldRefInput<$PrismaModel>
+    hasSome?: $Enums.Protocol[] | ListEnumProtocolFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type IEDsCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     manufacturer?: SortOrder
     homologado?: SortOrder
+    protocols?: SortOrder
   }
 
   export type IEDsMaxOrderByAggregateInput = {
@@ -7206,6 +7237,15 @@ export namespace Prisma {
     update?: RequestUpdateWithWhereUniqueWithoutAuthorInput | RequestUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: RequestUpdateManyWithWhereWithoutAuthorInput | RequestUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: RequestScalarWhereInput | RequestScalarWhereInput[]
+  }
+
+  export type IEDsCreateprotocolsInput = {
+    set: $Enums.Protocol[]
+  }
+
+  export type IEDsUpdateprotocolsInput = {
+    set?: $Enums.Protocol[]
+    push?: $Enums.Protocol | $Enums.Protocol[]
   }
 
   export type ConnectionsCreateiedInput = {
